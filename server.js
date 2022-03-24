@@ -18,15 +18,15 @@ app.get('/', (req,res) =>{
     res.send('Welcome to an Awesome App about Breads!')
 })
 
-//404 Page
-app.get('*', (req,res) => {
-    res.send('404')
-})
-
 //BREADS
 const breadsController = require('./controllers/bread_controllers.js')
 app.use('/breads', breadsController)
 //LISTEN
 app.listen(PORT, () =>{
     console.log('Server On')
+})
+
+//404 Page
+app.get('*', (req,res) => {
+    res.send('404')
 })
