@@ -1,6 +1,7 @@
 //DEPENDENCIES
 const express = require('express')
 const { append } = require('vary')
+const methodOverride = require('method-override')
 
 //CONFIG
 require('dotenv').config()
@@ -9,10 +10,12 @@ const app = express()
 
 //MIDDLEWARE
 app.set('views', __dirname + '/views')
+app.use(methodOverride('_method'))
 app.set('view engine', 'jsx')
 app.engine('jsx', require('express-react-views').createEngine())
 app.use(express.static('public'))
 app.use(express.urlencoded({extended: true}))
+
 
 //ROUTES
 app.get('/', (req,res) =>{
