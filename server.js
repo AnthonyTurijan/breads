@@ -1,4 +1,5 @@
 //DEPENDENCIES
+const mongoose = require('mongoose')
 const express = require('express')
 const { append } = require('vary')
 const methodOverride = require('method-override')
@@ -7,6 +8,10 @@ const methodOverride = require('method-override')
 require('dotenv').config()
 const PORT = process.env.PORT
 const app = express()
+mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true},
+    ()=>{
+        console.log('connected to mondo', process.env.MONGO_URI)
+    })
 
 //MIDDLEWARE
 app.set('views', __dirname + '/views')
@@ -25,6 +30,7 @@ app.get('/', (req,res) =>{
 //BREADS
 const breadsController = require('./controllers/bread_controllers.js')
 app.use('/breads', breadsController)
+
 //LISTEN
 app.listen(PORT, () =>{
     console.log('Server On')
