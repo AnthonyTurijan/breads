@@ -19,10 +19,12 @@ breads.get('/new', (req,res)=>{
   res.status(200).render('new')
 })
 
-//GET
+//SHOW
 breads.get('/:id', (req,res)=>{
   Bread.findById(req.params.id)
     .then(foundBread => {
+      const bakedBy = foundBread.getBakedBy()
+      console.log(bakedBy)
       res.render('show', {
         bread: foundBread
       })
@@ -43,16 +45,16 @@ breads.get('/:id/edit', (req,res) => {
 })
 
 // SHOW
-breads.get('/:arrayIndex', (req, res) => {
-  if (Bread[req.params.arrayIndex]) {
-    res.render('Show', {
-      bread:Bread[req.params.arrayIndex],
-      index: req.params.arrayIndex,
-    })
-  } else {
-    res.render('404')
-  }
-})
+// breads.get('/:arrayIndex', (req, res) => {
+//   if (Bread[req.params.arrayIndex]) {
+//     res.render('Show', {
+//       bread:Bread[req.params.arrayIndex],
+//       index: req.params.arrayIndex,
+//     })
+//   } else {
+//     res.render('404')
+//   }
+// })
 
 //DELETE
 breads.delete('/:id', (req,res)=>{
