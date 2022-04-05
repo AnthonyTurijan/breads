@@ -9,8 +9,9 @@ const breadSchema = new Schema ({
   hasGluten: Boolean,
   image: {type: String, default: 'http://placehold.jp/500x500.png'},
   baker : {
-    type: String,
-    enum: ['Rachel', 'Monica', 'Joey', 'Chandler', 'Ross', 'Phoebe']
+    type: Schema.Types.ObjectId,
+    ref: 'Baker'
+    // enum: ['Rachel', 'Monica', 'Joey', 'Chandler', 'Ross', 'Phoebe']
   }
 })
 
