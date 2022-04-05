@@ -1,7 +1,8 @@
 const React = require('react')
+const baker = require('../controllers/bakers_controller')
 const Default = require('./layouts/Default')
 
-function Edit ({bread,index}) {
+function Edit ({bread,bakers}) {
     return (
       <Default>
         <h2>Edit a bread</h2>
@@ -22,13 +23,12 @@ function Edit ({bread,index}) {
             defaultValue={bread.image}
             />
             <label htmlFor="baker">Baker</label>
-                <select name="baker" id="baker" defaultValue={bread.baker}>
-                    <option value="Rachel">Rachel</option>
-                    <option value="Monica">Monica</option>
-                    <option value="Joey">Joey</option>
-                    <option value="Chandler">Chandler</option>
-                    <option value="Ross">Ross</option>
-                    <option value="Phoebe">Phoebe</option>
+            <select name='baker' id='baker' defaultValue={bread.baker}  >
+                {bakers.map(baker=>{
+                    return (
+                      <option value={baker.id} key={baker.id} >{baker.name}</option>
+                    )
+                })}
                 </select>
           <label htmlFor="hasGluten">Has Gluten?</label>
           <input
